@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoginCustomer {
-    public LoginCustomer(ArrayList<Customer> customerTable) {
+    public static void LoginCustomer() {
         Scanner keyboardInput = new Scanner(System.in);
         String selection = null;
         String email;
@@ -26,10 +26,10 @@ public class LoginCustomer {
             return;
         }
 
-        for (Customer customer : customerTable) {
+        ArrayList<Customer> customers = FinancialInformation.getCustomerTable();
+        for (Customer customer : customers) {
             if (email.equals(customer.getEmail()) && password.equals(customer.getPassword())) {
-                BankInService.loggedInCustomerID = customer.getCustomerID();
-                BankInService.loggedInCustomer = customer;
+                BankInService.setLoggedInCustomer(customer);
                 System.out.println("\nLogin Successful");
                 return;
             }

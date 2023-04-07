@@ -1,11 +1,9 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class AddACustomer {
-    public AddACustomer(ArrayList<Customer> customerTable) {
+public class RegisterACustomer {
+    public static void RegisterACustomer() {
         Scanner keyboardInput = new Scanner(System.in);
         String name = null;
         String password = null;
@@ -41,7 +39,7 @@ public class AddACustomer {
             }
         }
 
-        customerTable.add(new Customer(name, password, email));
+        FinancialInformation.registerACustomer(new Customer(name, password, email));
         System.out.println("Congratulations. Your application has been accepted");
     }
 }
