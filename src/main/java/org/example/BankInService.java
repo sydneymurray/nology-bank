@@ -17,8 +17,6 @@ public class BankInService {
     }
 
     private static void displayLoggedOutMenu() {
-        ArrayList<Customer> customerTable = FinancialInformation.getCustomerTable();
-
         System.out.println("\n\n     Welcome to Syd-Bank. Please select an option: ");
         System.out.println("\n 1) Sign Up: ");
         System.out.println("\n 2) Login");
@@ -34,7 +32,7 @@ public class BankInService {
                 RegisterACustomer.RegisterACustomer();
                 break;
             case 2:
-                new LoginCustomer();
+                LoginCustomer.LoginCustomer();
                 break;
             default:
                 // code block
@@ -46,12 +44,23 @@ public class BankInService {
         System.out.println("\n 1) Pay a Customer");
         System.out.println("\n 2) Deposit");
         System.out.println("\n 3) Withdraw");
-        System.out.println("\n 4) Logout");
+        System.out.println("\n 4) Display Statement");
+        System.out.println("\n 5) Logout");
         try {
             selection = keyboardInput.nextInt();
         } catch (InputMismatchException e) {
-            //e.printStackTrace();
             System.out.println("\nIncorrect selection");
+            return;
+        }
+        switch (selection) {
+            case 1:
+                //
+                break;
+            case 5:
+                loggedInCustomer = null;
+                break;
+            default:
+                // code block
         }
     }
 

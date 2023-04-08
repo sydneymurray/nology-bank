@@ -39,6 +39,7 @@ public class RegisterACustomer {
             }
         }
 
+        if (name.equals("") || email.equals("") || password.equals("")) return;
         FinancialInformation.registerACustomer(new Customer(name, password, email));
         System.out.println("Congratulations. Your application has been accepted");
     }

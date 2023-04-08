@@ -6,9 +6,9 @@ public class Main {
     public static void main(String[] args) {
 
         // Create fake customers
-        FinancialInformation.registerACustomer(new Customer("Bill", "password", "syd@syd.com"));
-        FinancialInformation.registerACustomer(new Customer("Ted", "password", "bill@syd.com"));
-        FinancialInformation.registerACustomer(new Customer("Claudia", "password", "trish@syd.com"));
+        FinancialInformation.registerACustomer(new Customer("Bill", "password", "bill@syd.com"));
+        FinancialInformation.registerACustomer(new Customer("Ted", "password", "ted@syd.com"));
+        FinancialInformation.registerACustomer(new Customer("Claudia", "password", "claudia@syd.com"));
 
         // Display fake customers
         ArrayList<Customer> customers = FinancialInformation.getCustomerTable();
@@ -35,6 +35,6 @@ public class Main {
         }
 
         // OK Lets go
-        //BankInService.inService();
+        BankInService.inService();
     }
 }

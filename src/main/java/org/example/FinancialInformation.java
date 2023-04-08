@@ -10,6 +10,7 @@ public class FinancialInformation {
     public static ArrayList<Customer> getCustomerTable() {
         return customerTable;
     }
+
     public static void registerACustomer(Customer customer) {
         customerTable.add(customer);
     }
@@ -17,6 +18,7 @@ public class FinancialInformation {
     public static ArrayList<Account> getAccountsTable() {
         return accountsTable;
     }
+
     public static void createAnAccount(Account account) {
         accountsTable.add(account);
     }
@@ -24,6 +26,7 @@ public class FinancialInformation {
     public static ArrayList<Transaction> getTransactionTable() {
         return transactionTable;
     }
+
     public static void recordATransaction(Transaction transaction) {
         transactionTable.add(transaction);
     }

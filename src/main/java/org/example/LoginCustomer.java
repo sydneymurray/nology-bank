@@ -27,6 +27,7 @@ public class LoginCustomer {
         }
 
         ArrayList<Customer> customers = FinancialInformation.getCustomerTable();
+        if (email.equals("") || password.equals("")) return;
         for (Customer customer : customers) {
             if (email.equals(customer.getEmail()) && password.equals(customer.getPassword())) {
                 BankInService.setLoggedInCustomer(customer);

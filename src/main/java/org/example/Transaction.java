@@ -6,10 +6,10 @@ public class Transaction {
     private int payerAccount;
     private int PayeeAccount;
     private int amount;
-    private int type;
+    private String type;
     private Date transactionTime;
 
-    public Transaction(int payerAccount, int payeeAccount, int amount, int type, Date transactionTime) {
+    public Transaction(int payerAccount, int payeeAccount, int amount, String type, Date transactionTime) {
         this.payerAccount = payerAccount;
         this.PayeeAccount = payeeAccount;
         this.amount = amount;
@@ -29,7 +29,7 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
