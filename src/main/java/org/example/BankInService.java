@@ -1,6 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -45,7 +44,8 @@ public class BankInService {
         System.out.println("\n 2) Deposit");
         System.out.println("\n 3) Withdraw");
         System.out.println("\n 4) Display Statement");
-        System.out.println("\n 5) Logout");
+        System.out.println("\n 5) Create an Account");
+        System.out.println("\n 6) Logout");
         try {
             selection = keyboardInput.nextInt();
         } catch (InputMismatchException e) {
@@ -64,7 +64,10 @@ public class BankInService {
         }
     }
 
-    public static void setLoggedInCustomer(Customer customer){
+    public static void setLoggedInCustomer(Customer customer) {
         loggedInCustomer = customer;
+    }
+    public static Customer getLoggedInCustomer(){
+        return loggedInCustomer;
     }
 }
