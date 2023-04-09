@@ -38,6 +38,4 @@ public class FinancialInformation {
         }
         return customerAccounts;
     }
-
-    public static void addATransaction(Transaction transaction){ transactionTable.add(transaction); }
 }

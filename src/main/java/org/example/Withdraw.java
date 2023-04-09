@@ -14,9 +14,9 @@ public class Withdraw {
         float amount;
 
         System.out.println("       Please select an account");
-        System.out.println("       Account   Type      Balance");
+        System.out.println("       Account   Type          Balance");
         for (int i = 0; i < customerAccounts.size(); i++) {
-            System.out.printf("   %1d) %8d  %-8s %9s%n", i+1, customerAccounts.get(i).getAccountID(),
+            System.out.printf("   %1d) %8d  %-8s %15s%n", i+1, customerAccounts.get(i).getAccountID(),
                     customerAccounts.get(i).getType(),
                     "£" + decimalFormat.format(customerAccounts.get(i).getBalance()));
         }
@@ -46,7 +46,7 @@ public class Withdraw {
         }
 
         LocalDateTime timeAndDate = LocalDateTime.now();
-        FinancialInformation.addATransaction(new Transaction( null, accountID, amount, "WITHDRAWAL",
+        FinancialInformation.recordATransaction(new Transaction( null, accountID, amount, "WITHDRAWAL",
                 timeAndDate));
         customerAccounts.get(selection).debitBalance(amount);
     }

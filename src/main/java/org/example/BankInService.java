@@ -82,16 +82,22 @@ public class BankInService {
         }
     }
 
-    private static void displayCustomerAccounts(){
-        if (customerAccounts.size() > 0 ){
-            System.out.println("    Account   Type      Ballance");
-            for (Account account: customerAccounts) {
-                System.out.printf("    %8d  %-8s %9s%n", account.getAccountID(), account.getType(),
-                        "£" + String.valueOf(account.getBalance()));
-            }
+    private static void displayCustomerAccounts() {
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        if (customerAccounts.size() < 1) return;
+
+        System.out.println("    Account   Type            Balance");
+        for (Account account : customerAccounts) {
+            System.out.printf("    %8d  %-8s %15s%n", account.getAccountID(), account.getType(),
+                    "£" + decimalFormat.format(account.getBalance()));
         }
     }
 
-    public static void setLoggedInCustomer(Customer customer) { loggedInCustomer = customer; }
-    public static Customer getLoggedInCustomer() { return loggedInCustomer; }
+    public static void setLoggedInCustomer(Customer customer) {
+        loggedInCustomer = customer;
+    }
+
+    public static Customer getLoggedInCustomer() {
+        return loggedInCustomer;
+    }
 }
