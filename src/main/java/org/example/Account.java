@@ -6,9 +6,9 @@ public class Account {
     private int accountID;
     private int owner;
     private String type;
-    private int balance = 0;
+    private float balance = 0;
 
-    public Account(int owner, String type, int balance) {
+    public Account(int owner, String type, float balance) {
         this.owner = owner;
         this.type = type;
         this.balance = balance;
@@ -36,12 +36,16 @@ public class Account {
         this.type = type;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
     public void setBalance(int balance) {
         this.balance = balance;
     }
+
+    public void creditBalance(float amount){ balance += amount; }
+
+    public void debitBalance(float amount){ balance -= amount; }
 
 }

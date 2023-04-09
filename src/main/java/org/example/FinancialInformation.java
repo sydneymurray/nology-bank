@@ -30,4 +30,14 @@ public class FinancialInformation {
     public static void recordATransaction(Transaction transaction) {
         transactionTable.add(transaction);
     }
+
+    public static ArrayList<Account> getCustomerAccounts(Customer customer) {
+        ArrayList<Account> customerAccounts = new ArrayList<Account>();
+        for (Account account: accountsTable) {
+            if (customer.getCustomerID() == account.getOwner()) customerAccounts.add(account);
+        }
+        return customerAccounts;
+    }
+
+    public static void addATransaction(Transaction transaction){ transactionTable.add(transaction); }
 }

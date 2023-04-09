@@ -1,8 +1,10 @@
 package org.example;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Main {
+    private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
     public static void main(String[] args) {
 
         // Create fake customers
@@ -29,9 +31,10 @@ public class Main {
         // Display fake accounts
         System.out.println("\nACCOUNTS");
         ArrayList<Account> accounts = FinancialInformation.getAccountsTable();
+
         for(Account account: accounts){
-            System.out.printf("%8d %8d %8s %6d%n", account.getAccountID(), account.getOwner(), account.getType(),
-                    account.getBalance());
+            System.out.printf("%8d %8d %8s %9s%n", account.getAccountID(), account.getOwner(), account.getType(),
+                    "£" + decimalFormat.format(account.getBalance()));
         }
 
         // OK Lets go

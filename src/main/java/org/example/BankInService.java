@@ -1,10 +1,13 @@
 package org.example;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BankInService {
     private static Customer loggedInCustomer = null;
+    private static ArrayList<Account> customerAccounts = new ArrayList<Account>();
     private static Scanner keyboardInput = new Scanner(System.in);
     private static int selection = 0;
 
@@ -17,8 +20,8 @@ public class BankInService {
 
     private static void displayLoggedOutMenu() {
         System.out.println("\n\n     Welcome to Syd-Bank. Please select an option: ");
-        System.out.println("\n 1) Sign Up: ");
-        System.out.println("\n 2) Login");
+        System.out.println("\n    1) Sign Up: ");
+        System.out.println("\n    2) Login");
         try {
             selection = keyboardInput.nextInt();
         } catch (InputMismatchException e) {
@@ -39,13 +42,16 @@ public class BankInService {
     }
 
     private static void displayLoggedinMenu() {
-        System.out.println("\n\n     Welcome " + loggedInCustomer.getUsername() + ". Please select an option: ");
-        System.out.println("\n 1) Pay a Customer");
-        System.out.println("\n 2) Deposit");
-        System.out.println("\n 3) Withdraw");
-        System.out.println("\n 4) Display Statement");
-        System.out.println("\n 5) Create an Account");
-        System.out.println("\n 6) Logout");
+        customerAccounts = FinancialInformation.getCustomerAccounts(loggedInCustomer);
+        System.out.println("\n\n     Welcome " + loggedInCustomer.getUsername() + ". Please select an option: \n");
+        displayCustomerAccounts();
+
+        System.out.println("\n    1) Pay a Customer");
+        System.out.println("\n    2) Deposit");
+        System.out.println("\n    3) Withdraw");
+        System.out.println("\n    4) Display Statement");
+        System.out.println("\n    5) Create an Account");
+        System.out.println("\n    6) Logout");
         try {
             selection = keyboardInput.nextInt();
         } catch (InputMismatchException e) {
@@ -56,7 +62,19 @@ public class BankInService {
             case 1:
                 //
                 break;
+            case 2:
+                Deposit.Deposit(loggedInCustomer, customerAccounts);
+                break;
+            case 3:
+                //
+                break;
+            case 4:
+                //
+                break;
             case 5:
+                CreateAnAccount.CreateAnAccount(loggedInCustomer);
+                break;
+            case 6:
                 loggedInCustomer = null;
                 break;
             default:
@@ -64,10 +82,16 @@ public class BankInService {
         }
     }
 
-    public static void setLoggedInCustomer(Customer customer) {
-        loggedInCustomer = customer;
+    private static void displayCustomerAccounts(){
+        if (customerAccounts.size() > 0 ){
+            System.out.println("    Account   Type      Ballance");
+            for (Account account: customerAccounts) {
+                System.out.printf("    %8d  %-8s %9s%n", account.getAccountID(), account.getType(),
+                        "£" + String.valueOf(account.getBalance()));
+            }
+        }
     }
-    public static Customer getLoggedInCustomer(){
-        return loggedInCustomer;
-    }
+
+    public static void setLoggedInCustomer(Customer customer) { loggedInCustomer = customer; }
+    public static Customer getLoggedInCustomer() { return loggedInCustomer; }
 }
