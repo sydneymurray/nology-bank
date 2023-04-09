@@ -66,7 +66,7 @@ public class BankInService {
                 Deposit.Deposit(loggedInCustomer, customerAccounts);
                 break;
             case 3:
-                //
+                Withdraw.Withdraw(loggedInCustomer, customerAccounts);
                 break;
             case 4:
                 //
