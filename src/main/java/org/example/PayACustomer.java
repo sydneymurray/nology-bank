@@ -2,9 +2,7 @@ package org.example;
 
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class PayACustomer {
     public static void PayACustomer(Customer loggedInCustomer, ArrayList<Account> customerAccounts) {
@@ -54,6 +52,16 @@ public class PayACustomer {
         }
 
         System.out.println("       Please select a payee option or account number");
+        int[] payees = loggedInCustomer.getPayees();
+        if (loggedInCustomer.getPayees() != null) {
+            ArrayList<Customer> customers = FinancialInformation.getCustomerTable();
+            System.out.println("       Name          Account");
+            for (int i = 0; i < payees.length; i++) {
+                System.out.printf("   %2d) %-10s  %10d%n", i + 1,
+                        getAccountOwnerName(FinancialInformation.getAccountOwner(payees[i]), customers),
+                        payees[i]);
+            }
+        }
         try {
             payeeAccountID = keyboardInput.nextInt();
         } catch (InputMismatchException e) {
@@ -61,18 +69,26 @@ public class PayACustomer {
             return;
         }
 
-        try{
+        if(payerAccountID > 0 && payeeAccountID < payees.length + 1) payeeAccountID = payees[payeeAccountID-1];
+        try {
             FinancialInformation.creditAnAccount(payeeAccountID, amount);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Account " + payeeAccountID + " does not exist");
             return;
         }
+        loggedInCustomer.addAPayee(payeeAccountID);
         customerAccounts.get(selection).debitBalance(amount);
 
         LocalDateTime timeAndDate = LocalDateTime.now();
         FinancialInformation.recordATransaction(new Transaction(payerAccountID,
                 payeeAccountID, amount, paymentComment, timeAndDate));
+    }
+
+    private static String getAccountOwnerName(int ownerID, ArrayList<Customer> customers) {
+        for (Customer customer : customers) {
+            if (ownerID == customer.getCustomerID()) return customer.getUsername();
+        }
+        return "";
     }
 }
 

@@ -33,19 +33,26 @@ public class FinancialInformation {
 
     public static ArrayList<Account> getCustomerAccounts(Customer customer) {
         ArrayList<Account> customerAccounts = new ArrayList<Account>();
-        for (Account account: accountsTable) {
+        for (Account account : accountsTable) {
             if (customer.getCustomerID() == account.getOwner()) customerAccounts.add(account);
         }
         return customerAccounts;
     }
 
     public static void creditAnAccount(int accountNumber, Float amount) throws Exception {
-        for (Account account: accountsTable) {
+        for (Account account : accountsTable) {
             if (account.getAccountID() == accountNumber) {
                 account.creditBalance(amount);
                 return;
             }
         }
         throw new Exception("Account " + accountNumber + " does not exist");
+    }
+
+    public static Integer getAccountOwner(int accountID) {
+        for (Account account : accountsTable) {
+            if (account.getAccountID() == accountID) return account.getOwner();
+        }
+        return null;
     }
 }

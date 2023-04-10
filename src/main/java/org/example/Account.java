@@ -6,6 +6,7 @@ public class Account {
     private int accountID;
     private int owner;
     private String type;
+
     private float balance = 0;
 
     public Account(int owner, String type, float balance) {
