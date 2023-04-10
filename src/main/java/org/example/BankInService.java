@@ -60,7 +60,7 @@ public class BankInService {
         }
         switch (selection) {
             case 1:
-                //
+                PayACustomer.PayACustomer(loggedInCustomer, customerAccounts);
                 break;
             case 2:
                 Deposit.Deposit(loggedInCustomer, customerAccounts);

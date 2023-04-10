@@ -13,7 +13,7 @@ public class Withdraw {
         int selection;
         float amount;
 
-        System.out.println("       Please select an account");
+        System.out.println("       Please select a withdrawal account");
         System.out.println("       Account   Type          Balance");
         for (int i = 0; i < customerAccounts.size(); i++) {
             System.out.printf("   %1d) %8d  %-8s %15s%n", i+1, customerAccounts.get(i).getAccountID(),
@@ -32,7 +32,7 @@ public class Withdraw {
         selection--;
         if (selection > customerAccounts.size()) return;
         int accountID = customerAccounts.get(selection).getAccountID();
-        System.out.println("       Please enter the withdrawal amount");
+        System.out.println("       Please select the withdrawal amount");
         try {
             amount = keyboardInput.nextFloat();
         } catch (InputMismatchException e) {

@@ -38,4 +38,14 @@ public class FinancialInformation {
         }
         return customerAccounts;
     }
+
+    public static void creditAnAccount(int accountNumber, Float amount) throws Exception {
+        for (Account account: accountsTable) {
+            if (account.getAccountID() == accountNumber) {
+                account.creditBalance(amount);
+                return;
+            }
+        }
+        throw new Exception("Account " + accountNumber + " does not exist");
+    }
 }
