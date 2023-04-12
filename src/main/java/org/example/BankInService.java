@@ -69,7 +69,7 @@ public class BankInService {
                 Withdraw.Withdraw(loggedInCustomer, customerAccounts);
                 break;
             case 4:
-                //
+                DisplayStatement.DisplayStatement(loggedInCustomer, customerAccounts);
                 break;
             case 5:
                 CreateAnAccount.CreateAnAccount(loggedInCustomer);

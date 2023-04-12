@@ -55,4 +55,22 @@ public class FinancialInformation {
         }
         return null;
     }
+
+    public static ArrayList<Transaction> getStatement(int accountID) {
+        ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+        for (Transaction transaction : transactionTable) {
+            if (transaction.getPayeeAccount() == accountID || transaction.getPayerAccount() == accountID) {
+                transactions.add(transaction);
+            }
+        }
+        return transactions;
+    }
+
+    public static String getAccountOwnersName(int account) {
+        int accountOwnerID = getAccountOwner(account);
+        for (Customer customer : customerTable) {
+            if (accountOwnerID == customer.getCustomerID()) return customer.getUsername();
+        }
+        return null;
+    }
 }

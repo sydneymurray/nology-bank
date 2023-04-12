@@ -1,8 +1,8 @@
 package org.example;
 
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Main {
     private static final DecimalFormat decimalFormat = new DecimalFormat("0.00");
@@ -40,6 +40,5 @@ public class Main {
 
         // OK Lets go
         BankInService.inService();
-
     }
 }

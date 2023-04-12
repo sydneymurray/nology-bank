@@ -52,14 +52,14 @@ public class PayACustomer {
         }
 
         System.out.println("       Please select a payee option or account number");
-        int[] payees = loggedInCustomer.getPayees();
+        ArrayList<Integer> payees = loggedInCustomer.getPayees();
         if (loggedInCustomer.getPayees() != null) {
             ArrayList<Customer> customers = FinancialInformation.getCustomerTable();
             System.out.println("       Name          Account");
-            for (int i = 0; i < payees.length; i++) {
+            for (int i = 0; i < payees.size(); i++) {
                 System.out.printf("   %2d) %-10s  %10d%n", i + 1,
-                        getAccountOwnerName(FinancialInformation.getAccountOwner(payees[i]), customers),
-                        payees[i]);
+                        getAccountOwnerName(FinancialInformation.getAccountOwner(payees.get(i)), customers),
+                        payees.get(i));
             }
         }
         try {
@@ -69,7 +69,7 @@ public class PayACustomer {
             return;
         }
 
-        if(payerAccountID > 0 && payeeAccountID < payees.length + 1) payeeAccountID = payees[payeeAccountID-1];
+        if(payerAccountID > 0 && payeeAccountID < payees.size() + 1) payeeAccountID = payees.get(payeeAccountID-1);
         try {
             FinancialInformation.creditAnAccount(payeeAccountID, amount);
         } catch (Exception e) {

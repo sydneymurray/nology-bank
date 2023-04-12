@@ -1,7 +1,6 @@
 package org.example;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Transaction {
     private Integer payerAccount;
@@ -19,27 +18,11 @@ public class Transaction {
         this.transactionTime = transactionTime;
     }
 
-    public void setPayerAccount(int payerAccount) {
-        this.payerAccount = payerAccount;
-    }
-
-    public void setPayeeAccount(int payeeAccount) {
-        PayeeAccount = payeeAccount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
+    public Integer getPayeeAccount() { return PayeeAccount; }
+    public Integer getPayerAccount() { return payerAccount; }
+    public float getAmount() { return amount; }
+    public String getType() { return type; }
     public LocalDateTime getTransactionTime() {
         return transactionTime;
-    }
-
-    public void setTransactionTime(LocalDateTime transactionTime) {
-        this.transactionTime = transactionTime;
     }
 }
