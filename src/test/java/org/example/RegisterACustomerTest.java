@@ -30,9 +30,9 @@ class RegisterACustomerTest {
     public void registerACustomerStoredTheCorrectDetails() {
         RegisterACustomer.RegisterACustomer();
 
-        assertEquals("sydney", FinancialInformation.getCustomerTable().get(0).getUsername());
-        assertEquals("syd@syd.com", FinancialInformation.getCustomerTable().get(0).getEmail());
-        assertEquals("password", FinancialInformation.getCustomerTable().get(0).getPassword());
-        assertTrue(FinancialInformation.getCustomerTable().get(0).getCustomerID() > 1000);
+        assertEquals("sydney", FinancialInformation.getCustomerTable().get(1).getUsername());
+        assertEquals("syd@syd.com", FinancialInformation.getCustomerTable().get(1).getEmail());
+        assertEquals("password", FinancialInformation.getCustomerTable().get(1).getPassword());
+        assertTrue(FinancialInformation.getCustomerTable().get(1).getCustomerID() > 1000);
     }
 }
