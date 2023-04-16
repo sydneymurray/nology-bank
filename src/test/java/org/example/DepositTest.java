@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,7 +14,7 @@ class DepositTest {
     @BeforeEach
     void setUp() {
         // Provide System.in
-        String userInput = String.format("1");
+        String userInput = String.format("1%s500", System.lineSeparator());
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
         System.setIn(bais);
 
@@ -24,11 +25,11 @@ class DepositTest {
     }
 
     @Test
-    public void createAnAccountCreatedACurrentAccount() {
-        CreateAnAccount.CreateAnAccount(new Customer("jake", "password", "jake@syd.com"));
+    public void deposit500PoundsShowsOnAccount() {
+        ArrayList<Account> accounts = new ArrayList<Account>();
+        accounts.add(new Account(1000, "CURRENT", 0f));
+        Deposit.Deposit(new Customer("jake", "password", "jake@syd.com"), accounts);
 
-        assertEquals("CURRENT", FinancialInformation.getAccountsTable().get(0).getType());
-        assertTrue(FinancialInformation.getAccountsTable().get(0).getAccountID() > 10000000);
-        assertTrue(FinancialInformation.getAccountsTable().get(0).getBalance() == 0);
+        assertTrue(accounts.get(0).getBalance() == 500);
     }
 }
