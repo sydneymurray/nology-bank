@@ -50,14 +50,6 @@ public class Customer {
         payees.add(payee);
     }
 
-//    public int[] getPayees() {
-//        int[] payeeArr = new int[this.payees.size()];
-//        int i = 0;
-//        for (int payee: payees) {
-//            payeeArr[i++] = payee;
-//        }
-//        return payeeArr;
-//    }
     public ArrayList<Integer> getPayees() {
         ArrayList<Integer> payeeArr = new ArrayList<Integer>();
         for (int payee: payees) {

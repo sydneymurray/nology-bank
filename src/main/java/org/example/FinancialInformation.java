@@ -19,9 +19,7 @@ public class FinancialInformation {
         return accountsTable;
     }
 
-    public static void createAnAccount(Account account) {
-        accountsTable.add(account);
-    }
+    public static void createAnAccount(Account account) { accountsTable.add(account); }
 
     public static ArrayList<Transaction> getTransactionTable() {
         return transactionTable;

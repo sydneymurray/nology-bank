@@ -31,5 +31,6 @@ class DepositTest {
         Deposit.Deposit(new Customer("jake", "password", "jake@syd.com"), accounts);
 
         assertTrue(accounts.get(0).getBalance() == 500);
+        assertTrue(FinancialInformation.getTransactionTable().get(0).getAmount() == 500);
     }
 }
