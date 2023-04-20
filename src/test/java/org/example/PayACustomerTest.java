@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PayACustomerTest {
     @Test
     public void payACustomer500PoundsShows500InCurrentAccountAnd2500InSavingsAccount() {
+        FinancialInformation.resetAllInformation();
         FinancialInformation.registerACustomer(new Customer("zack", "password", "zack@syd.com"));
         FinancialInformation.createAnAccount(new Account(FinancialInformation.getCustomerTable().get(0).getCustomerID(),
                 "CURRENT", 1000));
@@ -39,5 +40,6 @@ class PayACustomerTest {
 
         assertTrue(FinancialInformation.getAccountsTable().get(0).getBalance() == 500);
         assertTrue(FinancialInformation.getAccountsTable().get(1).getBalance() == 2500);
+        assertTrue(FinancialInformation.getTransactionTable().get(0).getAmount() == 500);
     }
 }

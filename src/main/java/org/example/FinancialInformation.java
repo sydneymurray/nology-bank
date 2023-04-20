@@ -71,4 +71,10 @@ public class FinancialInformation {
         }
         return null;
     }
+
+    public static void resetAllInformation(){
+        customerTable.clear();
+        accountsTable.clear();
+        transactionTable.clear();
+    }
 }
