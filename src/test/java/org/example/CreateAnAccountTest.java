@@ -10,6 +10,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CreateAnAccountTest {
+    FinancialInformation financialInformation = new FinancialInformation();
     @BeforeEach
     void setUp() {
         // Provide System.in
@@ -25,10 +26,11 @@ class CreateAnAccountTest {
 
     @Test
     public void createAnAccountCreatedACurrentAccount() {
-        CreateAnAccount.CreateAnAccount(new Customer("jake", "password", "jake@syd.com"));
+        CreateAnAccount.CreateAnAccount(new Customer("jake", "password", "jake@syd.com"),
+                financialInformation);
 
-        assertEquals("CURRENT", FinancialInformation.getAccountsTable().get(0).getType());
-        assertTrue(FinancialInformation.getAccountsTable().get(0).getAccountID() > 10000000);
-        assertTrue(FinancialInformation.getAccountsTable().get(0).getBalance() == 0);
+        assertEquals("CURRENT", financialInformation.getAccountsTable().get(0).getType());
+        assertTrue(financialInformation.getAccountsTable().get(0).getAccountID() > 10000000);
+        assertTrue(financialInformation.getAccountsTable().get(0).getBalance() == 0);
     }
 }

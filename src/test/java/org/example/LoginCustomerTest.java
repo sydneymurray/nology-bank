@@ -7,7 +7,6 @@ package org.example;
         import java.io.ByteArrayInputStream;
         import java.io.ByteArrayOutputStream;
         import java.io.PrintStream;
-        import java.util.ArrayList;
 
         import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,13 +29,10 @@ class LoginCustomerTest {
 
     @Test
     public void LoginCustomerTest() {
-
         financialInformation.registerACustomer(new Customer("mick", "password", "mick@syd.com"));
-        LoginCustomer.LoginCustomer();
+        Customer loggedInCustomer = LoginCustomer.LoginCustomer(financialInformation);
 
-        assertEquals("mick", BankInService.getLoggedInCustomer().getUsername());
-        assertEquals("mick@syd.com", BankInService.getLoggedInCustomer().getEmail());
-
-        FinancialInformation.getCustomerTable();
+        assertEquals("mick", loggedInCustomer.getUsername());
+        assertEquals("mick@syd.com", loggedInCustomer.getEmail());
     }
 }

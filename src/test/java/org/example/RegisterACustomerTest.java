@@ -14,7 +14,8 @@ class RegisterACustomerTest {
     @BeforeEach
     void setUp() {
         // Provide System.in
-        String userInput = String.format("sydney%spassword%ssyd@syd.com",
+        String userInput = String.format("sydney%spassword%ssyd@syd.com%s",
+                System.lineSeparator(),
                 System.lineSeparator(),
                 System.lineSeparator());
         ByteArrayInputStream bais = new ByteArrayInputStream(userInput.getBytes());
@@ -27,12 +28,12 @@ class RegisterACustomerTest {
     }
 
     @Test
-    public void registerACustomerStoredTheCorrectDetails() {
-        RegisterACustomer.RegisterACustomer();
+    public void registerACustomerReturnsTheCorrectDetails() {
+        Customer newCustomer = RegisterACustomer.RegisterACustomer();
 
-        assertEquals("sydney", FinancialInformation.getCustomerTable().get(1).getUsername());
-        assertEquals("syd@syd.com", FinancialInformation.getCustomerTable().get(1).getEmail());
-        assertEquals("password", FinancialInformation.getCustomerTable().get(1).getPassword());
-        assertTrue(FinancialInformation.getCustomerTable().get(1).getCustomerID() > 1000);
+        assertEquals("sydney", newCustomer.getUsername());
+        assertEquals("syd@syd.com", newCustomer.getEmail());
+        assertEquals("password", newCustomer.getPassword());
+        assertTrue(newCustomer.getCustomerID() > 1000);
     }
 }

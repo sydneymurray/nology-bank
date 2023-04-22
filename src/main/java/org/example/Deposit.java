@@ -7,7 +7,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Deposit {
-    public static void Deposit(Customer customer, ArrayList<Account> customerAccounts, FinancialInformation financialInformation){
+    public static void Deposit(Customer customer, ArrayList<Account> customerAccounts,
+                               FinancialInformation financialInformation){
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         Scanner keyboardInput = new Scanner(System.in);
         int selection;

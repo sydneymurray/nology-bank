@@ -55,7 +55,7 @@ public class PayACustomer {
         System.out.println("       Please select a payee option or account number");
         ArrayList<Integer> payees = loggedInCustomer.getPayees();
         if (loggedInCustomer.getPayees() != null) {
-            ArrayList<Customer> customers = FinancialInformation.getCustomerTable();
+            ArrayList<Customer> customers = financialInformation.getCustomerTable();
             System.out.println("       Name          Account");
             for (int i = 0; i < payees.size(); i++) {
                 System.out.printf("   %2d) %-10s  %10d%n", i + 1,

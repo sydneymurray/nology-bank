@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WithdrawTest {
+    FinancialInformation financialInformation = new FinancialInformation();
     @BeforeEach
     void setUp() {
         // Provide System.in
@@ -28,9 +29,10 @@ class WithdrawTest {
     public void withdraw500PoundsShowsOnAccountShouldLeave250Pounds() {
         ArrayList<Account> accounts = new ArrayList<Account>();
         accounts.add(new Account(1000, "CURRENT", 750f));
-        Withdraw.Withdraw(new Customer("jake", "password", "jake@syd.com"), accounts);
+        Withdraw.Withdraw(new Customer("jake", "password", "jake@syd.com"), accounts,
+                financialInformation);
 
         assertTrue(accounts.get(0).getBalance() == 250);
-        assertTrue(FinancialInformation.getTransactionTable().get(0).getAmount() == 500);
+        assertTrue(financialInformation.getTransactionTable().get(0).getAmount() == 500);
     }
 }

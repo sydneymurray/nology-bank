@@ -7,7 +7,7 @@ public class FinancialInformation {
     private static ArrayList<Account> accountsTable = new ArrayList<Account>();
     private static ArrayList<Transaction> transactionTable = new ArrayList<Transaction>();
 
-    public static ArrayList<Customer> getCustomerTable() {
+    public ArrayList<Customer> getCustomerTable() {
         return customerTable;
     }
 

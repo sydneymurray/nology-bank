@@ -14,6 +14,7 @@ public class BankInService {
 
     public void inService() {
         while (true) {
+            displayAllCustomers();
             if (loggedInCustomer == null) displayLoggedOutMenu();
             else displayLoggedinMenu();
         }
@@ -35,7 +36,7 @@ public class BankInService {
                 financialInformation.registerACustomer(RegisterACustomer.RegisterACustomer());
                 break;
             case 2:
-                loggedInCustomer = LoginCustomer.LoginCustomer();
+                loggedInCustomer = LoginCustomer.LoginCustomer(financialInformation);
                 break;
             default:
                 // code block
@@ -96,6 +97,14 @@ public class BankInService {
 
     public Customer getLoggedInCustomer() {
         return loggedInCustomer;
+    }
+
+    public void displayAllCustomers() {
+        ArrayList<Customer> customers = financialInformation.getCustomerTable();
+        System.out.println("\n  CUSTOMERS");
+        for(Customer customer: customers){
+            System.out.printf("%6d %-8s %-12s%n",customer.getCustomerID(), customer.getUsername(), customer.getEmail());
+        }
     }
 }
 
