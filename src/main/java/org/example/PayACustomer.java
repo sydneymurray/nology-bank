@@ -5,7 +5,8 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class PayACustomer {
-    public static void PayACustomer(Customer loggedInCustomer, ArrayList<Account> customerAccounts) {
+    public static void PayACustomer(Customer loggedInCustomer, ArrayList<Account> customerAccounts,
+                                    FinancialInformation financialInformation) {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         Scanner keyboardInput = new Scanner(System.in);
         int selection;
@@ -58,7 +59,7 @@ public class PayACustomer {
             System.out.println("       Name          Account");
             for (int i = 0; i < payees.size(); i++) {
                 System.out.printf("   %2d) %-10s  %10d%n", i + 1,
-                        getAccountOwnerName(FinancialInformation.getAccountOwner(payees.get(i)), customers),
+                        getAccountOwnerName(financialInformation.getAccountOwner(payees.get(i)), customers),
                         payees.get(i));
             }
         }
@@ -71,7 +72,7 @@ public class PayACustomer {
 
         if(payerAccountID > 0 && payeeAccountID < payees.size() + 1) payeeAccountID = payees.get(payeeAccountID-1);
         try {
-            FinancialInformation.creditAnAccount(payeeAccountID, amount);
+            financialInformation.creditAnAccount(payeeAccountID, amount);
         } catch (Exception e) {
             System.out.println("Account " + payeeAccountID + " does not exist");
             return;
@@ -80,7 +81,7 @@ public class PayACustomer {
         customerAccounts.get(selection).debitBalance(amount);
 
         LocalDateTime timeAndDate = LocalDateTime.now();
-        FinancialInformation.recordATransaction(new Transaction(payerAccountID,
+        financialInformation.recordATransaction(new Transaction(payerAccountID,
                 payeeAccountID, amount, paymentComment, timeAndDate));
     }
 

@@ -7,7 +7,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Withdraw {
-    public static void Withdraw(Customer customer, ArrayList<Account> customerAccounts){
+    public static void Withdraw(Customer customer, ArrayList<Account> customerAccounts,
+                                FinancialInformation financialInformation){
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         Scanner keyboardInput = new Scanner(System.in);
         int selection;
@@ -46,7 +47,7 @@ public class Withdraw {
         }
 
         LocalDateTime timeAndDate = LocalDateTime.now();
-        FinancialInformation.recordATransaction(new Transaction( null, accountID, amount, "WITHDRAWAL",
+        financialInformation.recordATransaction(new Transaction( null, accountID, amount, "WITHDRAWAL",
                 timeAndDate));
         customerAccounts.get(selection).debitBalance(amount);
     }

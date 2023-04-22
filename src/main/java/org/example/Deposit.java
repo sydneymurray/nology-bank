@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Deposit {
-    public static void Deposit(Customer customer, ArrayList<Account> customerAccounts){
+    public static void Deposit(Customer customer, ArrayList<Account> customerAccounts, FinancialInformation financialInformation){
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         Scanner keyboardInput = new Scanner(System.in);
         int selection;
@@ -43,7 +43,7 @@ public class Deposit {
         if (amount < 0) return;
 
         LocalDateTime timeAndDate = LocalDateTime.now();
-        FinancialInformation.recordATransaction(new Transaction( null, accountID, amount, "DEPOSIT",
+        financialInformation.recordATransaction(new Transaction( null, accountID, amount, "DEPOSIT",
                 timeAndDate));
         customerAccounts.get(selection).creditBalance(amount);
     }

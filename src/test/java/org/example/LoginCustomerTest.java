@@ -12,6 +12,7 @@ package org.example;
         import static org.junit.jupiter.api.Assertions.*;
 
 class LoginCustomerTest {
+    FinancialInformation financialInformation = new FinancialInformation();
     @BeforeEach
     void setUp() {
         // Provide System.in
@@ -29,7 +30,8 @@ class LoginCustomerTest {
 
     @Test
     public void LoginCustomerTest() {
-        FinancialInformation.registerACustomer(new Customer("mick", "password", "mick@syd.com"));
+
+        financialInformation.registerACustomer(new Customer("mick", "password", "mick@syd.com"));
         LoginCustomer.LoginCustomer();
 
         assertEquals("mick", BankInService.getLoggedInCustomer().getUsername());

@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class RegisterACustomer {
-    public static void RegisterACustomer() {
+    public static Customer RegisterACustomer() {
         Scanner keyboardInput = new Scanner(System.in);
         String name = null;
         String password = null;
@@ -15,7 +15,7 @@ public class RegisterACustomer {
                 name = keyboardInput.nextLine();
             } catch (Exception e) {
                 System.out.println("\nIncorrect entry");
-                return;
+                return null;
             }
         }
 
@@ -25,7 +25,7 @@ public class RegisterACustomer {
                 password = keyboardInput.nextLine();
             } catch (Exception e) {
                 System.out.println("\nIncorrect entry");
-                return;
+                return null;
             }
         }
 
@@ -35,12 +35,12 @@ public class RegisterACustomer {
                 email = keyboardInput.nextLine();
             } catch (Exception e) {
                 System.out.println("\nIncorrect entry");
-                return;
+                return null;
             }
         }
 
-        if (name.equals("") || email.equals("") || password.equals("")) return;
-        FinancialInformation.registerACustomer(new Customer(name, password, email));
+        if (name.equals("") || email.equals("") || password.equals("")) return null;
         System.out.println("Congratulations. Your application has been accepted");
+        return new Customer(name, password, email);
     }
 }

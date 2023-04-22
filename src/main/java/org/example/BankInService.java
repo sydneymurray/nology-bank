@@ -10,15 +10,16 @@ public class BankInService {
     private static ArrayList<Account> customerAccounts = new ArrayList<Account>();
     private static Scanner keyboardInput = new Scanner(System.in);
     private static int selection = 0;
+    FinancialInformation financialInformation = new FinancialInformation();
 
-    public static void inService() {
+    public void inService() {
         while (true) {
             if (loggedInCustomer == null) displayLoggedOutMenu();
             else displayLoggedinMenu();
         }
     }
 
-    private static void displayLoggedOutMenu() {
+    private void displayLoggedOutMenu() {
         System.out.println("\n\n     Welcome to Syd-Bank. Please select an option: ");
         System.out.println("\n    1) Sign Up: ");
         System.out.println("\n    2) Login");
@@ -31,18 +32,18 @@ public class BankInService {
         }
         switch (selection) {
             case 1:
-                RegisterACustomer.RegisterACustomer();
+                financialInformation.registerACustomer(RegisterACustomer.RegisterACustomer());
                 break;
             case 2:
-                LoginCustomer.LoginCustomer();
+                loggedInCustomer = LoginCustomer.LoginCustomer();
                 break;
             default:
                 // code block
         }
     }
 
-    private static void displayLoggedinMenu() {
-        customerAccounts = FinancialInformation.getCustomerAccounts(loggedInCustomer);
+    private void displayLoggedinMenu() {
+        customerAccounts = financialInformation.getCustomerAccounts(loggedInCustomer);
         System.out.println("\n\n     Welcome " + loggedInCustomer.getUsername() + ". Please select an option: \n");
         displayCustomerAccounts();
 
@@ -60,19 +61,19 @@ public class BankInService {
         }
         switch (selection) {
             case 1:
-                PayACustomer.PayACustomer(loggedInCustomer, customerAccounts);
+                PayACustomer.PayACustomer(loggedInCustomer, customerAccounts, financialInformation);
                 break;
             case 2:
-                Deposit.Deposit(loggedInCustomer, customerAccounts);
+                Deposit.Deposit(loggedInCustomer, customerAccounts, financialInformation);
                 break;
             case 3:
-                Withdraw.Withdraw(loggedInCustomer, customerAccounts);
+                Withdraw.Withdraw(loggedInCustomer, customerAccounts, financialInformation);
                 break;
             case 4:
-                DisplayStatement.DisplayStatement(loggedInCustomer, customerAccounts);
+                DisplayStatement.DisplayStatement(loggedInCustomer, customerAccounts, financialInformation);
                 break;
             case 5:
-                CreateAnAccount.CreateAnAccount(loggedInCustomer);
+                CreateAnAccount.CreateAnAccount(loggedInCustomer, financialInformation);
                 break;
             case 6:
                 loggedInCustomer = null;
@@ -82,7 +83,7 @@ public class BankInService {
         }
     }
 
-    private static void displayCustomerAccounts() {
+    private void displayCustomerAccounts() {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         if (customerAccounts.size() < 1) return;
 
@@ -93,11 +94,39 @@ public class BankInService {
         }
     }
 
-    public static void setLoggedInCustomer(Customer customer) {
-        loggedInCustomer = customer;
-    }
-
-    public static Customer getLoggedInCustomer() {
+    public Customer getLoggedInCustomer() {
         return loggedInCustomer;
     }
 }
+
+/*
+        // Create fake customers
+        financialInformation.registerACustomer(new Customer("Bill", "password", "bill@syd.com"));
+        financialInformation.registerACustomer(new Customer("Ted", "password", "ted@syd.com"));
+        financialInformation.registerACustomer(new Customer("Claudia", "password", "claudia@syd.com"));
+
+        // Display fake customers
+        ArrayList<Customer> customers = financialInformation.getCustomerTable();
+        System.out.println("\nCUSTOMERS");
+        for(Customer customer: customers){
+            //System.out.println(customer.getCustomerID() + " " + customer.getUsername() + " " + customer.getEmail());
+            System.out.printf("%6d %-8s %-12s%n",customer.getCustomerID(), customer.getUsername(), customer.getEmail());
+        }
+
+        // Create fake accounts
+        financialInformation.createAnAccount(new Account(
+                customers.get(0).getCustomerID(), "CURRENT", 230));
+        financialInformation.createAnAccount(new Account(
+                customers.get(1).getCustomerID(), "CURRENT", 49));
+        financialInformation.createAnAccount(new Account(
+                customers.get(2).getCustomerID(), "CURRENT", 155));
+
+        // Display fake accounts
+        System.out.println("\nACCOUNTS");
+        ArrayList<Account> accounts = financialInformation.getAccountsTable();
+
+        for(Account account: accounts){
+            System.out.printf("%8d %8d %8s %9s%n", account.getAccountID(), account.getOwner(), account.getType(),
+                    "£" + decimalFormat.format(account.getBalance()));
+        }
+ */

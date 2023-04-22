@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CreateAnAccount {
-    public static void CreateAnAccount(Customer customer) {
+    public static void CreateAnAccount(Customer customer, FinancialInformation financialInformation) {
         Scanner keyboardInput = new Scanner(System.in);
         int selection = 0;
         String type = null;
@@ -39,7 +39,7 @@ public class CreateAnAccount {
                 return;
         }
 
-        FinancialInformation.createAnAccount(new Account(customer.getCustomerID(), type, 0));
+        financialInformation.createAnAccount(new Account(customer.getCustomerID(), type, 0));
         System.out.println("\n You have successfully created a " + type + " Account");
     }
 }

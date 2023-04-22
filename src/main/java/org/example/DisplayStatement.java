@@ -6,7 +6,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DisplayStatement {
-    public static void DisplayStatement(Customer customer, ArrayList<Account> customerAccounts) {
+    public static void DisplayStatement(Customer customer, ArrayList<Account> customerAccounts,
+                                        FinancialInformation financialInformation) {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         Scanner keyboardInput = new Scanner(System.in);
         int selection;
@@ -28,7 +29,7 @@ public class DisplayStatement {
         if (selection > customerAccounts.size()) return;
 
         int accountID = customerAccounts.get(selection).getAccountID();
-        ArrayList<Transaction> transactions = FinancialInformation.getStatement(accountID);
+        ArrayList<Transaction> transactions = financialInformation.getStatement(accountID);
         System.out.println("       Date     Name       Amount");
         for (int i = transactions.size(); i > 0; i--) {
             if (transactions.get(i).getType().equals("DEPOSIT")) {
@@ -48,14 +49,14 @@ public class DisplayStatement {
             if (accountID == transactions.get(i).getPayeeAccount()) {
                 System.out.printf("   %10s %10s  %10s %n",
                         transactions.get(i).getTransactionTime().toLocalDate(),
-                        FinancialInformation.getAccountOwnersName(transactions.get(i).getPayerAccount()),
+                        financialInformation.getAccountOwnersName(transactions.get(i).getPayerAccount()),
                         "£" + decimalFormat.format(transactions.get(i).getAmount()));
                 continue;
             }
             if (accountID == transactions.get(i).getPayerAccount()) {
                 System.out.printf("   %10s %10s  %10s %n",
                         transactions.get(i).getTransactionTime().toLocalDate(),
-                        FinancialInformation.getAccountOwnersName(transactions.get(i).getPayeeAccount()),
+                        financialInformation.getAccountOwnersName(transactions.get(i).getPayeeAccount()),
                         "£-" + decimalFormat.format(transactions.get(i).getAmount()));
                 continue;
             }
